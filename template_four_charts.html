@@ -1,0 +1,106 @@
+
+
+
+<html>
+<head>
+	<style>
+	.grid-container {
+	  display: grid;
+	  grid-template-columns: auto auto;
+	  background-color: #2196F3;
+	  padding: 10px;
+	  width: 50%;
+	  background-color: rgba(255, 255, 255, 0.90);
+	}
+	</style>
+
+	</head>
+	  <body >
+	     <h1> {{title}} </h1>
+
+
+	     <select name=”color” id='color'>
+			<option value=”red”>Red</option>
+			<option value=”purple”>Purple </option>
+			</select>
+
+	     <div class="grid-container">
+		  <canvas class="grid-item" id="myChart1">1</canvas>
+		  <canvas class="grid-item" id="myChart2">2</canvas>
+		  <canvas class="grid-item" id="myChart3">3</canvas>
+		  <canvas class="grid-item" id="myChart4">4</canvas>
+		</div>
+
+     <!-- <canvas id="myChart" style="width:100%;max-width:700px"></canvas>  -->
+
+
+
+
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+
+<script type="text/javascript">
+
+
+var e = document.getElementById("country");
+var result = e.options[e.selectedIndex].value;
+
+
+// Make 4 scatter plots for grid
+for (let i = 1; i < 5; i++) { 
+  new Chart("myChart".concat(i), {
+  type: "scatter",
+  data: {
+    datasets: [{
+      pointRadius: 4,
+      pointBackgroundColor: "rgba(0,0,255,1)",
+      data: {{graph_data | safe}}
+    }]
+  },
+  options:{
+  	legend: {display: false}
+  }
+});
+}
+
+/*
+// Make scatter plots for grid
+new Chart("myChart", {
+  type: "scatter",
+  data: {
+    datasets: [{
+      pointRadius: 4,
+      pointBackgroundColor: "rgba(0,0,255,1)",
+      data: {{graph_data | safe}}
+    }]
+  },
+  options:{
+  	legend: {display: false}
+  }
+});
+
+
+// Make scatter plot
+new Chart("myChart2", {
+  type: "scatter",
+  data: {
+    datasets: [{
+      pointRadius: 4,
+      pointBackgroundColor: "rgba(0,0,255,1)",
+      data: {{graph_data | safe}}
+    }]
+  },
+  options:{
+  	legend: {display: false}
+  }
+});
+
+*/
+
+
+</script>
+  </body>
+</html>
+
